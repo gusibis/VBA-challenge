@@ -91,6 +91,59 @@ For sht = 1 To wsheets
     ActiveSheet.Range("I1:L" & shtLastRow).ClearContents
     ActiveSheet.Range("O1:r4, r1").ClearContents
     ActiveSheet.Range("J:J").Interior.ColorIndex = 0
+    ActiveSheet.Range("k:k").Interior.ColorIndex = 0
 Next sht
+Worksheets(1).Activate
+End Sub
+
+Sub clearCFormatColumnj()
+Dim cbValue As Long
+cbValue = ActiveSheet.Shapes("Check box 6").ControlFormat.Value
+wsheets = ActiveWorkbook.Worksheets.Count
+Application.ScreenUpdating = False
+If cbValue = 1 Then
+    For sht = 1 To wsheets
+        Worksheets(sht).Activate
+        shtLastRow = ActiveWorkbook.Sheets(sht).Cells(Rows.Count, 1).End(xlUp).Row
+        ActiveSheet.Range("J:J").Interior.ColorIndex = 0
+    Next sht
+ElseIf cbValue <> 1 Then
+    With ActiveSheet
+        lastro = .Cells(.Rows.Count, "J").End(xlUp).Row
+    End With
+    For Each cell In ActiveSheet.Range("J2:J" & lastro)
+        If cell.Value >= 0 Then
+            cell.Interior.ColorIndex = 4
+        Else
+           cell.Interior.ColorIndex = 3
+        End If
+    Next cell
+End If
+Worksheets(1).Activate
+
+End Sub
+Sub clearCFormatColumnk()
+Dim cbValue As Long
+cbValue = ActiveSheet.Shapes("Check box 9").ControlFormat.Value
+wsheets = ActiveWorkbook.Worksheets.Count
+Application.ScreenUpdating = False
+If cbValue = 1 Then
+    For sht = 1 To wsheets
+        Worksheets(sht).Activate
+        shtLastRow = ActiveWorkbook.Sheets(sht).Cells(Rows.Count, 1).End(xlUp).Row
+        ActiveSheet.Range("K:K").Interior.ColorIndex = 0
+    Next sht
+ElseIf cbValue <> 1 Then
+    With ActiveSheet
+        lastro = .Cells(.Rows.Count, "k").End(xlUp).Row
+    End With
+    For Each cell In ActiveSheet.Range("K2:K" & lastro)
+        If cell.Value >= 0 Then
+            cell.Interior.ColorIndex = 4
+        Else
+           cell.Interior.ColorIndex = 3
+        End If
+    Next cell
+End If
 Worksheets(1).Activate
 End Sub
