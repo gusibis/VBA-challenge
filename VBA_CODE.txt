@@ -95,7 +95,6 @@ For sht = 1 To wsheets
 Next sht
 Worksheets(1).Activate
 End Sub
-
 Sub clearCFormatColumnj()
 Dim cbValue As Long
 cbValue = ActiveSheet.Shapes("Check box 6").ControlFormat.Value
@@ -108,16 +107,19 @@ If cbValue = 1 Then
         ActiveSheet.Range("J:J").Interior.ColorIndex = 0
     Next sht
 ElseIf cbValue <> 1 Then
-    With ActiveSheet
-        lastro = .Cells(.Rows.Count, "J").End(xlUp).Row
-    End With
-    For Each cell In ActiveSheet.Range("J2:J" & lastro)
-        If cell.Value >= 0 Then
-            cell.Interior.ColorIndex = 4
-        Else
-           cell.Interior.ColorIndex = 3
-        End If
-    Next cell
+    For sht = 1 To wsheets
+        Worksheets(sht).Activate
+        With ActiveSheet
+            lastro = .Cells(.Rows.Count, "J").End(xlUp).Row
+        End With
+        For Each cell In ActiveSheet.Range("J2:J" & lastro)
+            If cell.Value >= 0 Then
+                cell.Interior.ColorIndex = 4
+            Else
+               cell.Interior.ColorIndex = 3
+            End If
+        Next cell
+    Next sht
 End If
 Worksheets(1).Activate
 
@@ -134,16 +136,19 @@ If cbValue = 1 Then
         ActiveSheet.Range("K:K").Interior.ColorIndex = 0
     Next sht
 ElseIf cbValue <> 1 Then
-    With ActiveSheet
-        lastro = .Cells(.Rows.Count, "k").End(xlUp).Row
-    End With
-    For Each cell In ActiveSheet.Range("K2:K" & lastro)
-        If cell.Value >= 0 Then
-            cell.Interior.ColorIndex = 4
-        Else
-           cell.Interior.ColorIndex = 3
-        End If
-    Next cell
+    For sht = 1 To wsheets
+        Worksheets(sht).Activate
+        With ActiveSheet
+            lastro = .Cells(.Rows.Count, "k").End(xlUp).Row
+        End With
+        For Each cell In ActiveSheet.Range("K2:K" & lastro)
+            If cell.Value >= 0 Then
+                cell.Interior.ColorIndex = 4
+            Else
+               cell.Interior.ColorIndex = 3
+            End If
+        Next cell
+    Next sht
 End If
 Worksheets(1).Activate
 End Sub
